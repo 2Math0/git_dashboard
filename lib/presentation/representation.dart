@@ -13,7 +13,11 @@ class Representation extends StatelessWidget {
     // log(drawerItems[0][drawerItems[0].keys.first][0]
     //     [drawerItems[0][drawerItems[0].keys.first][0].keys.first]);
     return Scaffold(
-      appBar: AppBar(title: const Text(AppString.dashboard)),
+      appBar: AppBar(
+          title: Text(
+        AppString.dashboard,
+        style: Theme.of(context).textTheme.titleLarge,
+      )),
       drawer: const DrawerMenu(),
       body: SingleChildScrollView(
         child: Consumer(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:git_dashboard/presentation/resources/color_manager.dart';
+import 'package:git_dashboard/presentation/resources/values_manager.dart';
 
 import '../data/html_data.dart';
 
@@ -9,15 +11,24 @@ class DrawerMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: AppColor.primaryDarkGrey,
       child: Column(children: [
         DrawerHeader(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              CircleAvatar(
-                child: Icon(Icons.verified_user_outlined),
+            children: [
+              const CircleAvatar(
+                radius: AppSize.s32,
+                child: Icon(
+                  Icons.verified_user_outlined,
+                  size: AppSize.s32,
+                ),
               ),
-              Text('My git hub repo'),
+              const SizedBox(height: AppMargin.m8),
+              Text(
+                'My git hub repo',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ],
           ),
         ),
@@ -25,7 +36,10 @@ class DrawerMenu extends StatelessWidget {
             shrinkWrap: true,
             itemCount: drawerItems.length,
             itemBuilder: (context, i) => ExpansionTile(
-                  title: Text(drawerItems[i].keys.first),
+                  title: Text(
+                    drawerItems[i].keys.first,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
                   children: [
                     for (var item in drawerItems[i][drawerItems[i].keys.first])
                       GestureDetector(
@@ -36,7 +50,11 @@ class DrawerMenu extends StatelessWidget {
                             Navigator.pop(context);
                           },
                           child: ListTile(
-                              title: Text(item.keys.first.toString()))),
+                              tileColor: AppColor.neutralDarkBlue,
+                              title: Text(
+                                item.keys.first.toString(),
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ))),
                   ],
                 )),
       ]),
